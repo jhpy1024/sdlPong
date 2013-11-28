@@ -11,7 +11,7 @@ public:
 
 	virtual void handleInput() = 0;
 	virtual void update() = 0;
-	virtual void render(RendererPtr renderer) = 0;
+	virtual void render(RendererPtr& renderer) = 0;
 
 	Vector2 getPosition() const;
 	Vector2 getVelocity() const;
