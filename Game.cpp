@@ -2,8 +2,8 @@
 
 Game::Game(int width, int height, const std::string& title)
 : width_(width), height_(height), title_(title),
-window_(std::unique_ptr<SDL_Window, void(*)(SDL_Window*)>(nullptr, SDL_DestroyWindow)),
-renderer_(std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)>(nullptr, SDL_DestroyRenderer))
+window_(WindowPtr(nullptr, SDL_DestroyWindow)),
+renderer_(RendererPtr(nullptr, SDL_DestroyRenderer))
 {
 	initSDL();
 

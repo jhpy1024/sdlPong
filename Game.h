@@ -6,6 +6,9 @@
 #include <memory>
 #include <string>
 
+typedef std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> WindowPtr;
+typedef std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> RendererPtr;
+
 class Game
 {
 public:
@@ -24,8 +27,8 @@ private:
 	void initSDL();
 
 private:
-	std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> window_;
-	std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> renderer_;
+	WindowPtr window_;
+	RendererPtr renderer_;
 
 	int width_;
 	int height_;
