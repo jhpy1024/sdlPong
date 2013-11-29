@@ -1,4 +1,5 @@
 #include "Paddle.h"
+#include "Wall.h"
 
 Paddle::Paddle(const std::string& textureId, const Vector2& position, const Vector2& size, SDL_RendererFlip flip)
 : Entity(textureId, position, size, flip), upPressed_(false), downPressed_(false)
@@ -44,6 +45,11 @@ void Paddle::handleInput(SDL_Event& event)
 
 void Paddle::update()
 {
+	if (position_.getY() < Wall::WallSize)
+		position_.setY(Wall::WallSize);
+	if (position_.getY() > 480 - Wall::WallSize - size_.getY())
+		position_.setY(480 - Wall::WallSize - size_.getY());
+
 	if (upPressed_)
 		velocity_.setY(-SPEED);
 	else if (downPressed_)
