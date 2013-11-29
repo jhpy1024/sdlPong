@@ -32,10 +32,11 @@ void Game::handleInput()
 			SDL_Quit();
 			running_ = false;
 		}
+
+		for (auto& entity : entities_)
+			entity->handleInput(event);
 	}
 
-	for (auto& entity : entities_)
-		entity->handleInput();
 }
 
 void Game::update()

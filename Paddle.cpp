@@ -6,7 +6,7 @@ Paddle::Paddle(const std::string& textureId, const Vector2& position, const Vect
 
 }
 
-void Paddle::handleInput()
+void Paddle::handleInput(SDL_Event& event)
 {
 
 }

@@ -11,7 +11,7 @@ public:
 	Paddle() = default;
 	Paddle(const std::string& textureId, const Vector2& position, const Vector2& size);
 
-	void handleInput() override;
+	void handleInput(SDL_Event& event) override;
 	void update() override;
 	void render(RendererPtr& renderer, TextureManager& textureManager) override;
 };
