@@ -24,7 +24,7 @@ public:
 	Vector2 getVelocity() const;
 	Vector2 getSize() const;
 
-private:
+protected:
 	Vector2 position_;
 	Vector2 velocity_;
 	Vector2 size_;
