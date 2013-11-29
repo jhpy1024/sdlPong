@@ -30,7 +30,7 @@ void Game::loadTextures()
 void Game::createEntities()
 {
 	entities_.push_back(std::make_unique<Paddle>(
-		Paddle("paddle", { 100, 100 }, { 15, 150 })));
+		Paddle("paddle", { Wall::WallSize + 10, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 })));
 
 	// Top wall
 	entities_.push_back(std::make_unique<Wall>(
