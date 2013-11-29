@@ -17,17 +17,29 @@ renderer_(RendererPtr(nullptr, SDL_DestroyRenderer))
 void Game::loadTextures()
 {
 	textureManager_.addTexture("assets/paddle.png", "paddle", renderer_);
-	textureManager_.addTexture("assets/wall.png", "wall", renderer_);
+	textureManager_.addTexture("assets/wallHorizontal.png", "wallHorizontal", renderer_);
+	textureManager_.addTexture("assets/wallVertical.png", "wallVertical", renderer_);
 }
 
 void Game::createEntities()
 {
-	entities_.push_back(std::make_unique<Paddle>(Paddle("paddle", { 100, 100 }, { 15, 150 })));
+	entities_.push_back(std::make_unique<Paddle>(
+		Paddle("paddle", { 100, 100 }, { 15, 150 })));
 
 	// Top wall
-	entities_.push_back(std::make_unique<Wall>(Wall("wall", { 0, 0 }, { static_cast<float>(width_), 20 })));
+	entities_.push_back(std::make_unique<Wall>(
+		Wall("wallHorizontal", { 0, 0 }, { static_cast<float>(width_), 20 })));
 	// Bottom wall
-	entities_.push_back(std::make_unique<Wall>(Wall("wall", { 0, height_ - 20.f }, { static_cast<float>(width_), 20 })));
+	entities_.push_back(std::make_unique<Wall>(
+		Wall("wallHorizontal", { 0, height_ - 20.f }, { static_cast<float>(width_), 20 })));
+
+	// Left wall
+	entities_.push_back(std::make_unique<Wall>(
+		Wall("wallVertical", { 0, 0 }, { 20, static_cast<float>(height_) })));
+
+	// Right wall
+	entities_.push_back(std::make_unique<Wall>(
+		Wall("wallVertical", { width_ - 20.f, 0 }, { 20, static_cast<float>(height_) })));
 }
 
 void Game::initSDL()
