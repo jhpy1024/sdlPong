@@ -29,6 +29,8 @@ public:
 
 private:
 	void initSDL();
+	void loadTextures();
+	void createEntities();
 
 private:
 	WindowPtr window_;
