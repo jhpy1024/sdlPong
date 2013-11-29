@@ -1,8 +1,13 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "Game.h"
+#include <SDL.h>
+
+#include <memory>
+
 #include "Vector2.h"
+
+typedef std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> RendererPtr;
 
 class Entity
 {
