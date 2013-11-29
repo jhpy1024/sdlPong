@@ -24,8 +24,8 @@ public:
 
 	bool isRunning() const;
 
-	int getWidth() const;
-	int getHeight() const;
+	static int Width;
+	static int Height;
 
 private:
 	void initSDL();
@@ -35,9 +35,7 @@ private:
 private:
 	WindowPtr window_;
 	RendererPtr renderer_;
-
-	int width_;
-	int height_;
+	
 	std::string title_;
 
 	bool running_;

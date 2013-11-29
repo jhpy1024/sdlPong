@@ -2,11 +2,17 @@
 #include "Paddle.h"
 #include "Wall.h"
 
+int Game::Width = 640;
+int Game::Height = 480;
+
 Game::Game(int width, int height, const std::string& title)
-: width_(width), height_(height), title_(title),
+: title_(title),
 window_(WindowPtr(nullptr, SDL_DestroyWindow)),
 renderer_(RendererPtr(nullptr, SDL_DestroyRenderer))
 {
+	Game::Width = width;
+	Game::Height = height;
+
 	initSDL();
 	loadTextures();
 	createEntities();
@@ -28,18 +34,18 @@ void Game::createEntities()
 
 	// Top wall
 	entities_.push_back(std::make_unique<Wall>(
-		Wall("wallHorizontal", { 0, 0 }, { static_cast<float>(width_), Wall::WallSize })));
+		Wall("wallHorizontal", { 0, 0 }, { static_cast<float>(Width), Wall::WallSize })));
 	// Bottom wall
 	entities_.push_back(std::make_unique<Wall>(
-		Wall("wallHorizontal", { 0, height_ - Wall::WallSize }, { static_cast<float>(width_), Wall::WallSize })));
+		Wall("wallHorizontal", { 0, Height - Wall::WallSize }, { static_cast<float>(Width), Wall::WallSize })));
 
 	// Left wall
 	entities_.push_back(std::make_unique<Wall>(
-		Wall("wallVertical", { 0, 0 }, { Wall::WallSize, static_cast<float>(height_) })));
+		Wall("wallVertical", { 0, 0 }, { Wall::WallSize, static_cast<float>(Height) })));
 
 	// Right wall
 	entities_.push_back(std::make_unique<Wall>(
-		Wall("wallVertical", { width_ - Wall::WallSize, 0 }, { Wall::WallSize, static_cast<float>(height_) })));
+		Wall("wallVertical", { Width - Wall::WallSize, 0 }, { Wall::WallSize, static_cast<float>(Height) })));
 }
 
 void Game::initSDL()
@@ -47,7 +53,7 @@ void Game::initSDL()
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	window_.reset(SDL_CreateWindow(title_.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		width_, height_, SDL_WINDOW_SHOWN));
+		Width, Height, SDL_WINDOW_SHOWN));
 	renderer_.reset(SDL_CreateRenderer(window_.get(), -1, 0));
 	
 	SDL_SetRenderDrawColor(renderer_.get(), 0, 0, 0, 255);
@@ -90,14 +96,4 @@ void Game::render()
 bool Game::isRunning() const
 {
 	return running_;
-}
-
-int Game::getWidth() const
-{
-	return width_;
-}
-
-int Game::getHeight() const
-{
-	return height_;
 }
