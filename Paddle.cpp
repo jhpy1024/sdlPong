@@ -66,3 +66,8 @@ void Paddle::render(RendererPtr& renderer, TextureManager& textureManager)
 {
 	textureManager.draw(textureId_, position_, size_, renderer, flip_);
 }
+
+void Paddle::checkCollisions(std::vector<std::unique_ptr<Entity>>& entities)
+{
+
+}

@@ -28,6 +28,11 @@ void Ball::checkEdgeCollisions()
 		velocity_.setY(-velocity_.getY());
 }
 
+void Ball::checkCollisions(std::vector<std::unique_ptr<Entity>>& entities)
+{
+
+}
+
 void Ball::update()
 {
 	checkEdgeCollisions();

@@ -90,7 +90,10 @@ void Game::handleInput()
 void Game::update()
 {
 	for (auto& entity : entities_)
+	{
+		entity->checkCollisions(entities_);
 		entity->update();
+	}
 }
 
 void Game::render()

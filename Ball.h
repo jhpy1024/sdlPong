@@ -14,6 +14,7 @@ public:
 	void handleInput(SDL_Event& event) override;
 	void update() override;
 	void render(RendererPtr& renderer, TextureManager& textureManager) override;
+	void checkCollisions(std::vector<std::unique_ptr<Entity>>& entities) override;
 
 private:
 	Vector2 genRandomVelocity() const;

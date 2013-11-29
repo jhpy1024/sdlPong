@@ -4,6 +4,7 @@
 #include <SDL.h>
 
 #include <memory>
+#include <vector>
 
 #include "Vector2.h"
 #include "TextureManager.h"
@@ -27,6 +28,7 @@ public:
 	virtual void handleInput(SDL_Event& event) = 0;
 	virtual void update() = 0;
 	virtual void render(RendererPtr& renderer, TextureManager& textureManager) = 0;
+	virtual void checkCollisions(std::vector<std::unique_ptr<Entity>>& entities) = 0;
 
 	Vector2 getPosition() const;
 	Vector2 getVelocity() const;
