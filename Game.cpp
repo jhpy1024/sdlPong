@@ -35,6 +35,7 @@ void Game::createEntities()
 	// Top wall
 	entities_.push_back(std::make_unique<Wall>(
 		Wall("wallHorizontal", { 0, 0 }, { static_cast<float>(Width), Wall::WallSize })));
+
 	// Bottom wall
 	entities_.push_back(std::make_unique<Wall>(
 		Wall("wallHorizontal", { 0, Height - Wall::WallSize }, { static_cast<float>(Width), Wall::WallSize })));
@@ -46,6 +47,10 @@ void Game::createEntities()
 	// Right wall
 	entities_.push_back(std::make_unique<Wall>(
 		Wall("wallVertical", { Width - Wall::WallSize, 0 }, { Wall::WallSize, static_cast<float>(Height) })));
+
+	// Center wall
+	entities_.push_back(std::make_unique<Wall>(
+		Wall("wallVertical", { Width / 2 - Wall::WallSize / 2, 0 }, { Wall::WallSize, static_cast<float>(Height) })));
 }
 
 void Game::initSDL()
