@@ -14,6 +14,12 @@ public:
 	void handleInput(SDL_Event& event) override;
 	void update() override;
 	void render(RendererPtr& renderer, TextureManager& textureManager) override;
+
+private:
+	bool upPressed_;
+	bool downPressed_;
+
+	const float SPEED = 2.f;
 };
 
 #endif

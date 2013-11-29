@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Paddle.h"
 
 Game::Game(int width, int height, const std::string& title)
 : width_(width), height_(height), title_(title),
@@ -6,6 +7,10 @@ window_(WindowPtr(nullptr, SDL_DestroyWindow)),
 renderer_(RendererPtr(nullptr, SDL_DestroyRenderer))
 {
 	initSDL();
+
+	textureManager_.addTexture("assets/paddle.png", "paddle", renderer_);
+
+	entities_.push_back(std::make_unique<Paddle>(Paddle("paddle", { 100, 100 }, { 15, 150 })));
 
 	running_ = true;
 }
