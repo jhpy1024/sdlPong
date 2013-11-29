@@ -9,7 +9,6 @@
 
 #include "Vector2.h"
 
-typedef std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> WindowPtr;
 typedef std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> RendererPtr;
 
 class TextureManager
