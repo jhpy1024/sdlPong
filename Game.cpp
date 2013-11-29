@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Paddle.h"
 #include "Wall.h"
+#include "Ball.h"
 
 int Game::Width = 640;
 int Game::Height = 480;
@@ -25,13 +26,11 @@ void Game::loadTextures()
 	textureManager_.addTexture("assets/paddle.png", "paddle", renderer_);
 	textureManager_.addTexture("assets/wallHorizontal.png", "wallHorizontal", renderer_);
 	textureManager_.addTexture("assets/wallVertical.png", "wallVertical", renderer_);
+	textureManager_.addTexture("assets/ball.png", "ball", renderer_);
 }
 
 void Game::createEntities()
 {
-	entities_.push_back(std::make_unique<Paddle>(
-		Paddle("paddle", { Wall::WallSize + 10, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 })));
-
 	// Top wall
 	entities_.push_back(std::make_unique<Wall>(
 		Wall("wallHorizontal", { 0, 0 }, { static_cast<float>(Width), Wall::WallSize })));
@@ -51,6 +50,12 @@ void Game::createEntities()
 	// Center wall
 	entities_.push_back(std::make_unique<Wall>(
 		Wall("wallVertical", { Width / 2 - Wall::WallSize / 2, 0 }, { Wall::WallSize, static_cast<float>(Height) })));
+
+	entities_.push_back(std::make_unique<Paddle>(
+		Paddle("paddle", { Wall::WallSize + 10, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 })));
+
+	entities_.push_back(std::make_unique<Ball>(
+		Ball("ball", { Width / 2.f, Height / 2.f }, { 16, 16 })));
 }
 
 void Game::initSDL()
