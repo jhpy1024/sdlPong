@@ -9,6 +9,8 @@ int main(int argc, char* argv[])
 		game.handleInput();
 		game.update();
 		game.render();
+
+		SDL_Delay(10);
 	}
 
 	return 0;
