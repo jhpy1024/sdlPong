@@ -7,8 +7,9 @@
 
 const float Ball::Speed = 3.f;
 
-Ball::Ball(const std::string& textureId, const Vector2& position, const Vector2& size, SDL_RendererFlip flip)
-: Entity(textureId, position, size, flip)
+Ball::Ball(const std::string& textureId, const Vector2& position, const Vector2& size,
+	EntityType type, SDL_RendererFlip flip)
+: Entity(textureId, position, size, type, flip)
 {
 	velocity_ = genRandomVelocity();
 }

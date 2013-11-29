@@ -33,29 +33,29 @@ void Game::createEntities()
 {
 	// Top wall
 	entities_.push_back(std::make_unique<Wall>(
-		Wall("wallHorizontal", { 0, 0 }, { static_cast<float>(Width), Wall::WallSize })));
+		Wall("wallHorizontal", { 0, 0 }, { static_cast<float>(Width), Wall::WallSize }, EntityType::Wall)));
 
 	// Bottom wall
 	entities_.push_back(std::make_unique<Wall>(
-		Wall("wallHorizontal", { 0, Height - Wall::WallSize }, { static_cast<float>(Width), Wall::WallSize })));
+		Wall("wallHorizontal", { 0, Height - Wall::WallSize }, { static_cast<float>(Width), Wall::WallSize }, EntityType::Wall)));
 
 	// Left wall
 	entities_.push_back(std::make_unique<Wall>(
-		Wall("wallVertical", { 0, 0 }, { Wall::WallSize, static_cast<float>(Height) })));
+		Wall("wallVertical", { 0, 0 }, { Wall::WallSize, static_cast<float>(Height) }, EntityType::Wall)));
 
 	// Right wall
 	entities_.push_back(std::make_unique<Wall>(
-		Wall("wallVertical", { Width - Wall::WallSize, 0 }, { Wall::WallSize, static_cast<float>(Height) })));
+		Wall("wallVertical", { Width - Wall::WallSize, 0 }, { Wall::WallSize, static_cast<float>(Height) }, EntityType::Wall)));
 
 	// Center wall
 	entities_.push_back(std::make_unique<Wall>(
-		Wall("wallVertical", { Width / 2 - Wall::WallSize / 2, 0 }, { Wall::WallSize, static_cast<float>(Height) })));
+		Wall("wallVertical", { Width / 2 - Wall::WallSize / 2, 0 }, { Wall::WallSize, static_cast<float>(Height) }, EntityType::Wall)));
 
 	entities_.push_back(std::make_unique<Paddle>(
-		Paddle("paddle", { Wall::WallSize + 10, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 })));
+		Paddle("paddle", { Wall::WallSize + 10, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 }, EntityType::Paddle)));
 
 	entities_.push_back(std::make_unique<Ball>(
-		Ball("ball", { Width / 2.f, Height / 2.f }, { 16, 16 })));
+		Ball("ball", { Width / 2.f, Height / 2.f }, { 16, 16 }, EntityType::Ball)));
 }
 
 void Game::initSDL()

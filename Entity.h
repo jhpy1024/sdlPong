@@ -10,12 +10,19 @@
 
 typedef std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> RendererPtr;
 
+enum class EntityType
+{
+	Ball,
+	Paddle,
+	Wall
+};
+
 class Entity
 {
 public:
 	Entity() = default;
 	Entity(const std::string& textureId, const Vector2& position,
-		const Vector2& size, SDL_RendererFlip flip = SDL_FLIP_NONE);
+		const Vector2& size, EntityType type, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	virtual void handleInput(SDL_Event& event) = 0;
 	virtual void update() = 0;
@@ -24,11 +31,14 @@ public:
 	Vector2 getPosition() const;
 	Vector2 getVelocity() const;
 	Vector2 getSize() const;
+	EntityType getType() const;
 
 protected:
 	Vector2 position_;
 	Vector2 velocity_;
 	Vector2 size_;
+
+	EntityType type_;
 
 	SDL_RendererFlip flip_;
 

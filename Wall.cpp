@@ -2,8 +2,9 @@
 
 const float Wall::WallSize = 20.f;
 
-Wall::Wall(const std::string& textureId, const Vector2& position, const Vector2& size, SDL_RendererFlip flip)
-: Entity(textureId, position, size, flip)
+Wall::Wall(const std::string& textureId, const Vector2& position, const Vector2& size,
+	EntityType type, SDL_RendererFlip flip)
+: Entity(textureId, position, size, type, flip)
 {
 
 }

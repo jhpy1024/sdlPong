@@ -10,7 +10,7 @@ class Wall : public Entity
 public:
 	Wall() = default;
 	Wall(const std::string& textureId, const Vector2& position, const Vector2& size,
-		SDL_RendererFlip flip = SDL_FLIP_NONE);
+		EntityType type, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	void handleInput(SDL_Event& event) override;
 	void update() override;

@@ -2,8 +2,9 @@
 #include "Wall.h"
 #include "Game.h"
 
-Paddle::Paddle(const std::string& textureId, const Vector2& position, const Vector2& size, SDL_RendererFlip flip)
-: Entity(textureId, position, size, flip), upPressed_(false), downPressed_(false)
+Paddle::Paddle(const std::string& textureId, const Vector2& position, const Vector2& size,
+	EntityType type, SDL_RendererFlip flip)
+: Entity(textureId, position, size, type, flip), upPressed_(false), downPressed_(false)
 {
 
 }
