@@ -4,7 +4,11 @@
 #include <SDL.h>
 
 #include <memory>
+#include <vector>
 #include <string>
+
+#include "Entity.h"
+#include "TextureManager.h"
 
 typedef std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> WindowPtr;
 typedef std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> RendererPtr;
@@ -35,6 +39,10 @@ private:
 	std::string title_;
 
 	bool running_;
+
+	TextureManager textureManager_;
+
+	std::vector<std::unique_ptr<Entity>> entities_;
 };
 
 #endif

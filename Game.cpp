@@ -33,18 +33,23 @@ void Game::handleInput()
 			running_ = false;
 		}
 	}
+
+	for (auto& entity : entities_)
+		entity->handleInput();
 }
 
 void Game::update()
 {
-
+	for (auto& entity : entities_)
+		entity->update();
 }
 
 void Game::render()
 {
 	SDL_RenderClear(renderer_.get());
 
-
+	for (auto& entity : entities_)
+		entity->render(renderer_, textureManager_);
 
 	SDL_RenderPresent(renderer_.get());
 }
