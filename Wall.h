@@ -15,6 +15,8 @@ public:
 	void handleInput(SDL_Event& event) override;
 	void update() override;
 	void render(RendererPtr& renderer, TextureManager& textureManager) override;
+
+	static const float WallSize;
 };
 
 #endif
