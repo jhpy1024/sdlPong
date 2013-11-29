@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Paddle.h"
+#include "Wall.h"
 
 Game::Game(int width, int height, const std::string& title)
 : width_(width), height_(height), title_(title),
@@ -16,11 +17,17 @@ renderer_(RendererPtr(nullptr, SDL_DestroyRenderer))
 void Game::loadTextures()
 {
 	textureManager_.addTexture("assets/paddle.png", "paddle", renderer_);
+	textureManager_.addTexture("assets/wall.png", "wall", renderer_);
 }
 
 void Game::createEntities()
 {
 	entities_.push_back(std::make_unique<Paddle>(Paddle("paddle", { 100, 100 }, { 15, 150 })));
+
+	// Top wall
+	entities_.push_back(std::make_unique<Wall>(Wall("wall", { 0, 0 }, { static_cast<float>(width_), 20 })));
+	// Bottom wall
+	entities_.push_back(std::make_unique<Wall>(Wall("wall", { 0, height_ - 20.f }, { static_cast<float>(width_), 20 })));
 }
 
 void Game::initSDL()

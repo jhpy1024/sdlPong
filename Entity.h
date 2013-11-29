@@ -15,7 +15,7 @@ class Entity
 public:
 	Entity() = default;
 	Entity(const std::string& textureId, const Vector2& position,
-		const Vector2& size);
+		const Vector2& size, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	virtual void handleInput(SDL_Event& event) = 0;
 	virtual void update() = 0;
@@ -29,6 +29,8 @@ protected:
 	Vector2 position_;
 	Vector2 velocity_;
 	Vector2 size_;
+
+	SDL_RendererFlip flip_;
 
 	std::string textureId_;
 };

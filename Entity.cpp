@@ -1,7 +1,7 @@
 #include "Entity.h"
 
-Entity::Entity(const std::string& textureId, const Vector2& position, const Vector2& size)
-: textureId_(textureId), position_(position), size_(size)
+Entity::Entity(const std::string& textureId, const Vector2& position, const Vector2& size, SDL_RendererFlip flip)
+: textureId_(textureId), position_(position), size_(size), flip_(flip)
 {
 
 }

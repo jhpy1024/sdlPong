@@ -9,7 +9,8 @@ class Paddle : public Entity
 {
 public:
 	Paddle() = default;
-	Paddle(const std::string& textureId, const Vector2& position, const Vector2& size);
+	Paddle(const std::string& textureId, const Vector2& position, const Vector2& size,
+		SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	void handleInput(SDL_Event& event) override;
 	void update() override;
