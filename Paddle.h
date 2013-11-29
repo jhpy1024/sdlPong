@@ -8,6 +8,7 @@ typedef std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> RendererPtr;
 class Paddle : public Entity
 {
 public:
+	Paddle() = default;
 	Paddle(const std::string& textureId, const Vector2& position, const Vector2& size);
 
 	void handleInput() override;

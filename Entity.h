@@ -13,6 +13,7 @@ typedef std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> RendererPtr;
 class Entity
 {
 public:
+	Entity() = default;
 	Entity(const std::string& textureId, const Vector2& position,
 		const Vector2& size);
 
