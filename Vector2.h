@@ -7,6 +7,7 @@ class Vector2
 {
 public:
 	Vector2(float x = 0.f, float y = 0.f);
+	Vector2(std::initializer_list<float> il);
 
 	float getX() const;
 	float getY() const;

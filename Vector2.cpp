@@ -8,6 +8,12 @@ Vector2::Vector2(float x, float y)
 
 }
 
+Vector2::Vector2(std::initializer_list<float> il)
+: x_(*il.begin()), y_(*(il.begin() + 1))
+{
+	
+}
+
 float Vector2::getX() const
 {
 	return x_;
