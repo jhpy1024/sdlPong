@@ -47,11 +47,6 @@ void Paddle::handleInput(SDL_Event& event)
 
 void Paddle::update()
 {
-	if (position_.getY() < Wall::WallSize)
-		position_.setY(Wall::WallSize);
-	if (position_.getY() > Game::Height - Wall::WallSize - size_.getY())
-		position_.setY(Game::Height - Wall::WallSize - size_.getY());
-
 	if (upPressed_)
 		velocity_.setY(-SPEED);
 	else if (downPressed_)
@@ -70,4 +65,9 @@ void Paddle::render(RendererPtr& renderer, TextureManager& textureManager)
 void Paddle::checkCollisions(std::vector<std::unique_ptr<Entity>>& entities)
 {
 	updateBounds();
+
+	if (position_.getY() < Wall::WallSize)
+		position_.setY(Wall::WallSize);
+	if (position_.getY() > Game::Height - Wall::WallSize - size_.getY())
+		position_.setY(Game::Height - Wall::WallSize - size_.getY());
 }
