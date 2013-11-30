@@ -69,5 +69,5 @@ void Paddle::render(RendererPtr& renderer, TextureManager& textureManager)
 
 void Paddle::checkCollisions(std::vector<std::unique_ptr<Entity>>& entities)
 {
-
+	updateBounds();
 }

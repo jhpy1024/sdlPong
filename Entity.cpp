@@ -26,3 +26,14 @@ EntityType Entity::getType() const
 {
 	return type_;
 }
+
+Rectangle Entity::getBounds() const
+{
+	return bounds_;
+}
+
+void Entity::updateBounds()
+{
+	bounds_.position = position_;
+	bounds_.size = size_;
+}

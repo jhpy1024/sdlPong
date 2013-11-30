@@ -19,5 +19,5 @@ void Wall::render(RendererPtr& renderer, TextureManager& textureManager)
 
 void Wall::checkCollisions(std::vector<std::unique_ptr<Entity>>& entities)
 {
-
+	updateBounds();
 }

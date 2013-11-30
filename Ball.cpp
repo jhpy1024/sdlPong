@@ -1,5 +1,6 @@
 #include <ctime>
 #include <random>
+#include <iostream>
 
 #include "Ball.h"
 #include "Game.h"
@@ -30,7 +31,32 @@ void Ball::checkEdgeCollisions()
 
 void Ball::checkCollisions(std::vector<std::unique_ptr<Entity>>& entities)
 {
+	updateBounds();
 
+	for (auto& entity : entities)
+	{
+		if (entity->getType() == EntityType::Paddle)
+		{
+			if (bounds_.intersects(entity->getBounds()))
+			{
+				while (bounds_.intersects(entity->getBounds()))
+				{
+					if (velocity_.getX() < 0) // Moving left so push back right
+					{
+						position_.setX(position_.getX() + 1.f);
+						updateBounds();
+					}
+					else if (velocity_.getX() > 0) // Moving right so push back left
+					{
+						position_.setX(position_.getX() - 1.f);
+						updateBounds();
+					}
+				}
+
+				velocity_.setX(-velocity_.getX());
+			}
+		}
+	}
 }
 
 void Ball::update()
