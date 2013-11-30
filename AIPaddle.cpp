@@ -23,7 +23,6 @@ void AIPaddle::update()
 {
 	if (distanceToBall() <= Game::Width / 2)
 	{
-		std::cout << "In range" << std::endl;
 		if (ball_->getPosition().getY() > position_.getY())
 			velocity_.setY(Speed);
 		else if (ball_->getPosition().getY() < position_.getY())
