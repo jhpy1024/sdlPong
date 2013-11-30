@@ -2,6 +2,7 @@
 #include "Paddle.h"
 #include "Wall.h"
 #include "Ball.h"
+#include "AIPaddle.h"
 
 int Game::Width = 640;
 int Game::Height = 480;
@@ -56,6 +57,10 @@ void Game::createEntities()
 
 	entities_.push_back(std::make_unique<Ball>(
 		Ball("ball", { Width / 2.f, Height / 2.f }, { 16, 16 }, EntityType::Ball)));
+
+	entities_.push_back(std::make_unique<AIPaddle>(
+		AIPaddle("paddle", { Width - Wall::WallSize - 10, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 }, EntityType::Paddle,
+		entities_[6])));
 }
 
 void Game::initSDL()
