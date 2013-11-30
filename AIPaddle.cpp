@@ -29,7 +29,7 @@ void AIPaddle::update()
 			velocity_.setY(-Speed);
 	}
 
-	position_ += velocity_;
+	position_ += velocity_ * Speed;
 }
 
 void AIPaddle::render(RendererPtr& renderer, TextureManager& textureManager)

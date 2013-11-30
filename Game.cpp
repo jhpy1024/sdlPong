@@ -8,7 +8,7 @@ int Game::Width = 640;
 int Game::Height = 480;
 
 Game::Game(int width, int height, const std::string& title)
-: title_(title),
+: title_(title), playerScore_(0), aiScore_(0),
 window_(WindowPtr(nullptr, SDL_DestroyWindow)),
 renderer_(RendererPtr(nullptr, SDL_DestroyRenderer))
 {
@@ -53,13 +53,13 @@ void Game::createEntities()
 		Wall("wallVertical", { Width / 2 - Wall::WallSize / 2, 0 }, { Wall::WallSize, static_cast<float>(Height) }, EntityType::Wall)));
 
 	entities_.push_back(std::make_unique<Paddle>(
-		Paddle("paddle", { Wall::WallSize + 10, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 }, EntityType::Paddle)));
+		Paddle("paddle", { Wall::WallSize, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 }, EntityType::Paddle)));
 
 	entities_.push_back(std::make_unique<Ball>(
 		Ball("ball", { Width / 2.f, Height / 2.f }, { 16, 16 }, EntityType::Ball)));
 
 	entities_.push_back(std::make_unique<AIPaddle>(
-		AIPaddle("paddle", { Width - Wall::WallSize - 10, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 }, EntityType::Paddle,
+		AIPaddle("paddle", { Width - Wall::WallSize - 15, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 }, EntityType::Paddle,
 		entities_[6])));
 }
 

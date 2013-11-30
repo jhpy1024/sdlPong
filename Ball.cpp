@@ -1,6 +1,5 @@
 #include <ctime>
 #include <random>
-#include <iostream>
 
 #include "Ball.h"
 #include "Game.h"
@@ -10,7 +9,7 @@ const float Ball::Speed = 3.f;
 
 Ball::Ball(const std::string& textureId, const Vector2& position, const Vector2& size,
 	EntityType type, SDL_RendererFlip flip)
-: Entity(textureId, position, size, type, flip)
+	: Entity(textureId, position, size, type, flip), hitLeftCount_(0), hitRightCount_(0)
 {
 	velocity_ = genRandomVelocity();
 }
@@ -20,12 +19,19 @@ void Ball::handleInput(SDL_Event& event) {}
 void Ball::checkEdgeCollisions()
 {
 	if (position_.getX() <= Wall::WallSize)
+	{
 		velocity_.setX(-velocity_.getX());
-	if (position_.getX() >= Game::Width - Wall::WallSize - size_.getX())
+		++hitLeftCount_;
+	}
+	else if (position_.getX() >= Game::Width - Wall::WallSize - size_.getX())
+	{
 		velocity_.setX(-velocity_.getX());
+		++hitRightCount_;
+	}
+
 	if (position_.getY() <= Wall::WallSize)
 		velocity_.setY(-velocity_.getY());
-	if (position_.getY() >= Game::Height - Wall::WallSize - size_.getY())
+	else if (position_.getY() >= Game::Height - Wall::WallSize - size_.getY())
 		velocity_.setY(-velocity_.getY());
 }
 

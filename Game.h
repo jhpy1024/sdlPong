@@ -33,6 +33,9 @@ private:
 	void createEntities();
 
 private:
+	int playerScore_;
+	int aiScore_;
+
 	WindowPtr window_;
 	RendererPtr renderer_;
 	

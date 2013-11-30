@@ -16,9 +16,15 @@ public:
 	void render(RendererPtr& renderer, TextureManager& textureManager) override;
 	void checkCollisions(std::vector<std::unique_ptr<Entity>>& entities) override;
 
+	int getHitLeftCount() const;
+	int getHitRightCount() const;
+
 private:
 	Vector2 genRandomVelocity() const;
 	void checkEdgeCollisions();
+
+	int hitRightCount_;
+	int hitLeftCount_;
 
 	static const float Speed;
 };
