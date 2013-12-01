@@ -56,3 +56,33 @@ void Text::render()
 
 	SDL_RenderCopy(renderer_.get(), texture_.get(), &srcRect, &dstRect);
 }
+
+void Text::changeContents(const std::string& contents)
+{
+	contents_ = contents;
+	create();
+}
+
+void Text::changeSize(int size)
+{
+	size_ = size;
+	create();
+}
+
+void Text::changeColor(SDL_Color color)
+{
+	color_ = color;
+	create();
+}
+
+void Text::changePosition(const Vector2& position)
+{
+	position_ = position;
+	create();
+}
+
+void Text::changeFont(const std::string& font)
+{
+	fontName_ = font;
+	create();
+}

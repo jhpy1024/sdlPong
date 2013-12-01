@@ -9,6 +9,7 @@
 
 #include "Entity.h"
 #include "TextureManager.h"
+#include "Text.h"
 
 typedef std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> WindowPtr;
 typedef std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> RendererPtr;
@@ -33,8 +34,14 @@ private:
 	void createEntities();
 
 private:
+	Text playerScoreText_;
+	Text aiScoreText_;
+
 	int playerScore_;
+	int lastPlayerScore_;
+
 	int aiScore_;
+	int lastAiScore_;
 
 	WindowPtr window_;
 	RendererPtr renderer_;

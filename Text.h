@@ -21,6 +21,13 @@ public:
 	Text& setFont(const std::string& font);
 	Text& setColor(SDL_Color color);
 	Text& setSize(int size);
+
+	void changeContents(const std::string& contents);
+	void changePosition(const Vector2& position);
+	void changeFont(const std::string& font);
+	void changeColor(SDL_Color color);
+	void changeSize(int size);
+
 	void create();
 
 	void render();

@@ -9,8 +9,10 @@ int Game::Height = 480;
 
 Game::Game(int width, int height, const std::string& title)
 : title_(title), playerScore_(0), aiScore_(0),
+lastPlayerScore_(0), lastAiScore_(0),
 window_(WindowPtr(nullptr, SDL_DestroyWindow)),
-renderer_(RendererPtr(nullptr, SDL_DestroyRenderer))
+renderer_(RendererPtr(nullptr, SDL_DestroyRenderer)),
+playerScoreText_(renderer_), aiScoreText_(renderer_)
 {
 	Game::Width = width;
 	Game::Height = height;
@@ -61,6 +63,22 @@ void Game::createEntities()
 	entities_.push_back(std::make_unique<AIPaddle>(
 		AIPaddle("paddle", { Width - Wall::WallSize - 15, static_cast<float>(Height) / 2 - 150 / 2 }, { 15, 150 }, EntityType::Paddle,
 		entities_[6])));
+
+	playerScoreText_
+		.setPosition({ Game::Width / 2.f - 50, 50})
+		.setColor({ 255, 255, 255 })
+		.setSize(35)
+		.setFont("assets/consola.ttf")
+		.setContents(std::to_string(playerScore_))
+		.create();
+
+	aiScoreText_
+		.setPosition({ Game::Width / 2.f + 30, 50 })
+		.setColor({ 255, 255, 255 })
+		.setSize(35)
+		.setFont("assets/consola.ttf")
+		.setContents(std::to_string(aiScore_))
+		.create();
 }
 
 void Game::initSDL()
@@ -96,8 +114,26 @@ void Game::update()
 {
 	for (auto& entity : entities_)
 	{
+		if (entity->getType() == EntityType::Ball)
+		{
+			playerScore_ = ((Ball*)entity.get())->getHitRightCount();
+			aiScore_ = ((Ball*)entity.get())->getHitLeftCount();
+		}
+
 		entity->checkCollisions(entities_);
 		entity->update();
+	}
+
+	if (playerScore_ != lastPlayerScore_)
+	{
+		playerScoreText_.changeContents(std::to_string(playerScore_));
+		lastPlayerScore_ = playerScore_;
+	}
+
+	if (aiScore_ != lastAiScore_)
+	{
+		aiScoreText_.changeContents(std::to_string(aiScore_));
+		lastAiScore_ = aiScore_;
 	}
 }
 
@@ -107,6 +143,9 @@ void Game::render()
 
 	for (auto& entity : entities_)
 		entity->render(renderer_, textureManager_);
+
+	playerScoreText_.render();
+	aiScoreText_.render();
 
 	SDL_RenderPresent(renderer_.get());
 }

@@ -90,3 +90,13 @@ Vector2 Ball::genRandomVelocity() const
 
 	return vec;
 }
+
+int Ball::getHitLeftCount() const
+{
+	return hitLeftCount_;
+}
+
+int Ball::getHitRightCount() const
+{
+	return hitRightCount_;
+}
