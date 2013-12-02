@@ -21,6 +21,9 @@ playerScoreText_(renderer_), aiScoreText_(renderer_)
 	loadTextures();
 	createEntities();
 
+	//audioManager_.loadSound("testSound", "assets/sound.wav");
+	//audioManager_.playSound("testSound");
+
 	running_ = true;
 }
 
